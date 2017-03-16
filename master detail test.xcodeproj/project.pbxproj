@@ -8,24 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		A61A9B5C1E7AA09C00E4661A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61A9B5B1E7AA09C00E4661A /* AppDelegate.swift */; };
-		A61A9B5F1E7AA09C00E4661A /* master_detail_test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A61A9B5D1E7AA09C00E4661A /* master_detail_test.xcdatamodeld */; };
+		A61A9B5F1E7AA09C00E4661A /* MDDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A61A9B5D1E7AA09C00E4661A /* MDDataModel.xcdatamodeld */; };
 		A61A9B611E7AA09C00E4661A /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61A9B601E7AA09C00E4661A /* MasterViewController.swift */; };
 		A61A9B631E7AA09C00E4661A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61A9B621E7AA09C00E4661A /* DetailViewController.swift */; };
 		A61A9B661E7AA09C00E4661A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A61A9B641E7AA09C00E4661A /* Main.storyboard */; };
 		A61A9B681E7AA09C00E4661A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A61A9B671E7AA09C00E4661A /* Assets.xcassets */; };
 		A61A9B6B1E7AA09C00E4661A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A61A9B691E7AA09C00E4661A /* LaunchScreen.storyboard */; };
+		A61A9B731E7AA1DC00E4661A /* MDDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61A9B721E7AA1DC00E4661A /* MDDataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A61A9B581E7AA09C00E4661A /* master detail test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "master detail test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A61A9B5B1E7AA09C00E4661A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A61A9B5E1E7AA09C00E4661A /* master_detail_test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = master_detail_test.xcdatamodel; sourceTree = "<group>"; };
+		A61A9B5E1E7AA09C00E4661A /* MDDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MDDataModel.xcdatamodel; sourceTree = "<group>"; };
 		A61A9B601E7AA09C00E4661A /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		A61A9B621E7AA09C00E4661A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A61A9B651E7AA09C00E4661A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A61A9B671E7AA09C00E4661A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A61A9B6A1E7AA09C00E4661A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A61A9B6C1E7AA09C00E4661A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A61A9B721E7AA1DC00E4661A /* MDDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDDataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,11 +63,12 @@
 				A61A9B5B1E7AA09C00E4661A /* AppDelegate.swift */,
 				A61A9B601E7AA09C00E4661A /* MasterViewController.swift */,
 				A61A9B621E7AA09C00E4661A /* DetailViewController.swift */,
+				A61A9B721E7AA1DC00E4661A /* MDDataController.swift */,
 				A61A9B641E7AA09C00E4661A /* Main.storyboard */,
 				A61A9B671E7AA09C00E4661A /* Assets.xcassets */,
 				A61A9B691E7AA09C00E4661A /* LaunchScreen.storyboard */,
 				A61A9B6C1E7AA09C00E4661A /* Info.plist */,
-				A61A9B5D1E7AA09C00E4661A /* master_detail_test.xcdatamodeld */,
+				A61A9B5D1E7AA09C00E4661A /* MDDataModel.xcdatamodeld */,
 			);
 			path = "master detail test";
 			sourceTree = "<group>";
@@ -96,6 +99,7 @@
 		A61A9B501E7AA09C00E4661A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = MD;
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = dplatov;
@@ -142,7 +146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A61A9B5F1E7AA09C00E4661A /* master_detail_test.xcdatamodeld in Sources */,
+				A61A9B731E7AA1DC00E4661A /* MDDataController.swift in Sources */,
+				A61A9B5F1E7AA09C00E4661A /* MDDataModel.xcdatamodeld in Sources */,
 				A61A9B5C1E7AA09C00E4661A /* AppDelegate.swift in Sources */,
 				A61A9B611E7AA09C00E4661A /* MasterViewController.swift in Sources */,
 				A61A9B631E7AA09C00E4661A /* DetailViewController.swift in Sources */,
@@ -307,17 +312,18 @@
 				A61A9B711E7AA09C00E4661A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		A61A9B5D1E7AA09C00E4661A /* master_detail_test.xcdatamodeld */ = {
+		A61A9B5D1E7AA09C00E4661A /* MDDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A61A9B5E1E7AA09C00E4661A /* master_detail_test.xcdatamodel */,
+				A61A9B5E1E7AA09C00E4661A /* MDDataModel.xcdatamodel */,
 			);
-			currentVersion = A61A9B5E1E7AA09C00E4661A /* master_detail_test.xcdatamodel */;
-			path = master_detail_test.xcdatamodeld;
+			currentVersion = A61A9B5E1E7AA09C00E4661A /* MDDataModel.xcdatamodel */;
+			path = MDDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
