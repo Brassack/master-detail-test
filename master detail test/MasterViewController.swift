@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import SDWebImage
+
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
@@ -43,6 +45,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 //        let newEvent = NSEntityDescription.insertNewObject(forEntityName: "Event", into: context) as! Event
         let user = MDDataController.sharedDataController.fetchOrCreateUser(NSDate().description)
         user.firstName = "Dima"
+        user.secondName = "Platov"
         // If appropriate, configure the new managed object.
 //        newEvent.timestamp = NSDate()
 //
@@ -125,6 +128,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
         cell.nameLabel.text = name
 
+        if let emailHash = user.email?.md5String() {
+            let urlString = "https://gravatar.com/avatar/".appending(emailHash)
+            
+            cell.avatarImageView.sd_setImage(with: NSURL(string: urlString) as URL?)
+        }
+
+//        cell.avatarImageView.sd_setImage(with: NSURL(string: "https://pbs.twimg.com/media/C7CzESvVoAAVDu6.jpg:large") as URL?)
+//        if (user.email != nil) {
+//            
+//        }
     }
 
     // MARK: - Fetched results controller

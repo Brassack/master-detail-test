@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+
 
 class DetailViewController: UIViewController, UITextFieldDelegate {
 
@@ -36,6 +38,12 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
             
             if (self.emailLabel) != nil {
                 emailLabel!.text = detail.email
+                
+                if let emailHash = detail.email?.md5String() {
+                    let urlString = "https://gravatar.com/avatar/".appending(emailHash)
+                    
+                    avatarImageView.sd_setImage(with: NSURL(string: urlString) as URL?)
+                }
             }
             
         }
