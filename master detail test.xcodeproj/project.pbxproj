@@ -16,6 +16,7 @@
 		A61A9B6B1E7AA09C00E4661A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A61A9B691E7AA09C00E4661A /* LaunchScreen.storyboard */; };
 		A61A9B731E7AA1DC00E4661A /* MDDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61A9B721E7AA1DC00E4661A /* MDDataController.swift */; };
 		A6C935CC1E7AB6AD00D67DB9 /* initialData.JSON in Resources */ = {isa = PBXBuildFile; fileRef = A6C935CB1E7AB6AD00D67DB9 /* initialData.JSON */; };
+		A6C935D01E7AC12A00D67DB9 /* MDMasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C935CF1E7AC12A00D67DB9 /* MDMasterTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A61A9B6C1E7AA09C00E4661A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A61A9B721E7AA1DC00E4661A /* MDDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDDataController.swift; sourceTree = "<group>"; };
 		A6C935CB1E7AB6AD00D67DB9 /* initialData.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = initialData.JSON; sourceTree = "<group>"; };
+		A6C935CF1E7AC12A00D67DB9 /* MDMasterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDMasterTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				A61A9B601E7AA09C00E4661A /* MasterViewController.swift */,
 				A61A9B621E7AA09C00E4661A /* DetailViewController.swift */,
 				A61A9B721E7AA1DC00E4661A /* MDDataController.swift */,
+				A6C935CF1E7AC12A00D67DB9 /* MDMasterTableViewCell.swift */,
 				A61A9B641E7AA09C00E4661A /* Main.storyboard */,
 				A61A9B671E7AA09C00E4661A /* Assets.xcassets */,
 				A61A9B691E7AA09C00E4661A /* LaunchScreen.storyboard */,
@@ -152,6 +155,7 @@
 			files = (
 				A61A9B731E7AA1DC00E4661A /* MDDataController.swift in Sources */,
 				A61A9B5F1E7AA09C00E4661A /* MDDataModel.xcdatamodeld in Sources */,
+				A6C935D01E7AC12A00D67DB9 /* MDMasterTableViewCell.swift in Sources */,
 				A61A9B5C1E7AA09C00E4661A /* AppDelegate.swift in Sources */,
 				A61A9B611E7AA09C00E4661A /* MasterViewController.swift in Sources */,
 				A61A9B631E7AA09C00E4661A /* DetailViewController.swift in Sources */,

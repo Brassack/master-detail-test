@@ -11,14 +11,33 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
-
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var avatarImageView:UIImageView!
 
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.userID?.description
+            if (self.detailDescriptionLabel != nil) {
+                 ///detail.userID?.description
+                var name:String
+                
+                if (detail.firstName != nil) {
+                    name = detail.firstName!
+                }else{
+                    name = ""
+                }
+                
+                if (detail.secondName != nil) {
+                    name = name.appending(" ").appending(detail.secondName!)
+                }
+                
+                self.detailDescriptionLabel!.text = name
             }
+            
+            if (self.emailLabel) != nil {
+                emailLabel!.text = detail.email
+            }
+            
         }
     }
 
@@ -33,6 +52,22 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func changeName(_ sender: Any) {
+        
+    }
+    
+    @IBAction func changeEmail(_ sender: Any) {
+        
+    }
+    
+    @IBAction func mailTo(){
+        if let email = self.detailItem?.email {
+            if let mailUrl = URL(string: "mailto:".appending(email)) {
+                UIApplication.shared.openURL(mailUrl)
+            }
+        }
+    }
+    
     var detailItem: MDUser? {
         didSet {
             // Update the view.

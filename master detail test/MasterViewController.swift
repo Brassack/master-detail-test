@@ -83,7 +83,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MDMasterTableViewCell
         let event = self.fetchedResultsController.object(at: indexPath)
         self.configureCell(cell, withEvent: event)
         return cell
@@ -110,8 +110,21 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
-    func configureCell(_ cell: UITableViewCell, withEvent event: MDUser) {
-        cell.textLabel!.text = event.firstName?.description
+    func configureCell(_ cell: MDMasterTableViewCell, withEvent user: MDUser) {
+//        cell.textLabel!.text = event.firstName?.description
+        var name:String
+        
+        if (user.firstName != nil) {
+            name = user.firstName!
+        }else{
+            name = ""
+        }
+        
+        if (user.secondName != nil) {
+            name = name.appending(" ").appending(user.secondName!)
+        }
+        cell.nameLabel.text = name
+
     }
 
     // MARK: - Fetched results controller
@@ -172,7 +185,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             case .delete:
                 tableView.deleteRows(at: [indexPath!], with: .fade)
             case .update:
-                self.configureCell(tableView.cellForRow(at: indexPath!)!, withEvent: anObject as! MDUser)
+                self.configureCell(tableView.cellForRow(at: indexPath!)! as! MDMasterTableViewCell, withEvent: anObject as! MDUser)
             case .move:
                 tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
