@@ -26,22 +26,19 @@ class MDDataController: NSObject {
             fatalError("Error initializing mom from: \(modelURL)")
         }
         let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
+
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let docURL = urls[urls.endIndex-1]
+
+        let storeURL = docURL.appendingPathComponent("MDDataModel.sqlite")//docURL.URLByAppendingPathComponent("DataModel.sqlite")
+        do {
+            try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+        } catch {
+            fatalError("Error migrating store: \(error)")
+        }
+        
         managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = psc
-        
-        DispatchQueue.global(qos:DispatchQoS.QoSClass.background).async {
-            let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-            let docURL = urls[urls.endIndex-1]
-            /* The directory the application uses to store the Core Data store file.
-             This code uses a file named "DataModel.sqlite" in the application's documents directory.
-             */
-            let storeURL = docURL.appendingPathComponent("MDDataModel.sqlite")//docURL.URLByAppendingPathComponent("DataModel.sqlite")
-            do {
-                try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
-            } catch {
-                fatalError("Error migrating store: \(error)")
-            }
-        }
     }
     
     func fetchOrCreateUser(_ userID:String) -> MDUser {
@@ -80,5 +77,48 @@ class MDDataController: NSObject {
                     fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    
+    
+    // MARK: - Setup default data
+    
+    func  loadInitialDataIfNeeded() {
+        
+        if UserDefaults.standard.bool(forKey: "DataLoaded") {
+            return
+        }
+        
+        if let dataUrl = Bundle.main.url(forResource: "initialData", withExtension: "JSON") {
+            if let jsonData = NSData(contentsOf: dataUrl) {
+                var usersArray:Array<Dictionary<String, Any>>
+                do {
+                    usersArray = try JSONSerialization.jsonObject(with: jsonData as Data, options: .allowFragments) as! Array<Dictionary<String, Any>>
+                } catch {
+                    print("Invalid JSON")
+                    return
+                }
+                
+                
+                for userDictionary in usersArray  {
+                    
+                    if let userID = userDictionary["id"] as? String {
+                        let user = fetchOrCreateUser(userID)
+                        user.firstName = userDictionary["firstName"] as? String
+                        user.secondName = userDictionary["secondName"] as? String
+                        user.email = userDictionary["email"] as? String
+                        
+                    }else {
+                        print("Incorrect data in JSON \(userDictionary)")
+                    }
+                    
+                }
+                
+                saveContext()
+                UserDefaults.standard.set(true, forKey: "DataLoaded")
+                UserDefaults.standard.synchronize()
+            }
+        }
+        
     }
 }
