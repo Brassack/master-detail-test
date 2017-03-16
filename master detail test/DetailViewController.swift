@@ -37,12 +37,17 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
             }
             
             if (self.emailLabel) != nil {
-                emailLabel!.text = detail.email
                 
-                if let emailHash = detail.email?.md5String() {
-                    let urlString = "https://gravatar.com/avatar/".appending(emailHash)
+                if let email = detail.email {
+                    emailLabel!.text = email
                     
-                    avatarImageView.sd_setImage(with: NSURL(string: urlString) as URL?)
+                    if let emailHash = detail.email?.md5String() {
+                        let urlString = "https://gravatar.com/avatar/".appending(emailHash)
+                        
+                        avatarImageView.sd_setImage(with: NSURL(string: urlString) as URL?)
+                    }
+                }else{
+                    emailLabel!.text = "No email"
                 }
             }
             
@@ -102,7 +107,13 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
             }
             
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
-                detail.email = alert.textFields?.first?.text
+                if let email = alert.textFields?.first?.text {
+                    if email.characters.count > 0 {
+                        detail.email = email
+                    }else{
+                        detail.email = nil
+                    }
+                }
                 
                 MDDataController.sharedDataController.saveContext()
                 self.configureView()
