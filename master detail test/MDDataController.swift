@@ -44,6 +44,30 @@ class MDDataController: NSObject {
         }
     }
     
+    func fetchOrCreateUser(_ userID:String) -> MDUser {
+        
+        let userFetch:NSFetchRequest<MDUser> = MDUser.fetchRequest()//NSFetchRequest<NSFetchRequestResult>(entityName: "MDUser")
+        userFetch.predicate = NSPredicate(format: "userID == %@", userID)
+        
+        var fetchedUses:[MDUser]
+        
+        do {
+            fetchedUses = try managedObjectContext.fetch(userFetch)
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        
+        if let user = fetchedUses.first {
+            
+            return user
+            
+        }else{
+            
+            let newUser = NSEntityDescription.insertNewObject(forEntityName: "MDUser", into: managedObjectContext) as! MDUser
+            newUser.userID = userID
+            return newUser
+        }
+    }
     
     func saveContext () {
         if managedObjectContext.hasChanges {
